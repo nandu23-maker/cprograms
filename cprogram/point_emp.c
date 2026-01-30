@@ -42,16 +42,16 @@ int main()
         // add data ...............
 
                  case '1': printf("Enter a id : ");
-                         scanf("%d",&ptr->id);
+                         scanf("%d",&(ptr+n)->id);
                         
                          printf("Enter a name: ");
-                         scanf("%s",ptr->name);
+                         scanf("%s",(ptr+n)->name);
                          
                          printf("Enter a surname: ");
-                         scanf("%s",ptr->surname);
+                         scanf("%s",(ptr+n)->surname);
                          
                          printf("Enter a salary: ");
-                         scanf("%f",&ptr->salary);
+                         scanf("%f",&(ptr+n)->salary);
                     n++;
                          printf("---done---");
                   break; 
@@ -70,7 +70,7 @@ int main()
                            for(i=0;i<n;i++)
                            {
                               
-                              printf("%d  %s  %s  %.2f\n",ptr->id, ptr->name, ptr->surname, ptr->salary); 
+                              printf("%d  %s  %s  %.2f\n",(ptr+i)->id, (ptr+i)->name, (ptr+i)->surname, (ptr+i)->salary); 
                               printf("------------------------------------\n");
                            }  
                         }
@@ -88,7 +88,7 @@ int main()
                                   printf("------------------------\n");
                                   for(i=0;i<n;i++)
                                  {
-                                        printf("%d  %s  %s\n",ptr->id, ptr->name, ptr->surname );
+                                        printf("%d  %s  %s\n",(ptr+i)->id, (ptr+i)->name, (ptr+i)->surname );
                                         printf("------------------------\n");
                          
                                  }
@@ -100,14 +100,14 @@ int main()
 
                         for(i=0;i<n;i++)
                         {
-                             if(ptr->id==id)
+                             if((ptr+i)->id==id)
                              {
                                  printf("Enter new name:");
-                                 scanf("%s",ptr->name);
+                                 scanf("%s",(ptr+i)->name);
                                  printf("Enter new surname:");
-                                 scanf("%s",ptr->surname);
+                                 scanf("%s",(ptr+i)->surname);
                                  printf("Enter new salary:");
-                                 scanf("%f",&ptr->salary);
+                                 scanf("%f",&(ptr+i)->salary);
                                  found=1;
                                     printf("--sucessfully upadte emp--");
                                break;
@@ -130,7 +130,7 @@ int main()
 
                                  for(i=0;i<n;i++)
                                  {
-                                      printf("%d  %s  %s\n",ptr->id, ptr->name, ptr->surname);
+                                      printf("%d  %s  %s\n",(ptr+i)->id, (ptr+i)->name, (ptr+i)->surname);
                                       printf("-------------------------\n");
                                  }
                           
@@ -140,9 +140,9 @@ int main()
                      
                           for(i=0;i<n;i++)
                           {
-                               if(ptr->id==id)
+                               if((ptr+i)->id==id)
                                {
-                                  ptr[i]=ptr[n-1];
+                                  *(ptr+i)=*(ptr+n-1);
                                   n--;
                                   found=1;
                                   printf("--sucessfully deleted--");
