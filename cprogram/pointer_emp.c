@@ -11,7 +11,7 @@ int main()
 {
    struct emp e[50];
    struct emp *ptr;
-   int n=0,i,j,id,found=0;
+   int n=0,i,j,id,found=0,A_id=1;
    char c;
    
    ptr=&e[0];
@@ -36,8 +36,9 @@ int main()
             switch(c)
             {
       //add data-------------------------------------------------------------------
-                      case'1':printf("Enter a id: ");
-                               scanf("%d",&(ptr+n)->id);
+                      case'1':
+                               (ptr+n)->id=A_id;
+                               A_id++;
                                
                                printf("Enter a name: ");
                                scanf("%s",(ptr+n)->name);
@@ -123,7 +124,7 @@ int main()
                               {
                                  while(i<n-1)
                                  {
-                                     ptr[i]=ptr[i+1];
+                                     ptr[i]=ptr[i+1];     //shifting.........
                                      i++;
                                  }
                                n--;
