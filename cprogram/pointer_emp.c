@@ -4,14 +4,15 @@ struct emp
 {
    int id;
    char name[50];
-   char surname[50];
+   char surname[50];                                  
    float salary;
 };
 int main()
 {
    struct emp e[50];
    struct emp *ptr;
-   int n=0,i,j,id,found=0,A_id=1;
+   struct emp del_emp;
+   int n=0,i,j,id,found=0,A_id=1,deleted,del_index;
    char c;
    
    ptr=&e[0];
@@ -23,11 +24,12 @@ int main()
          printf("2.Show Data\n");
          printf("3.Modify Data\n");
          printf("4.Delete Data\n");
-         printf("5.Exit\n");
+         printf("5.Recover Data\n");
+         printf("6.Exit\n");
          printf("Enter your choice: ");
          scanf(" %c", &c);
    
-       if(c!='1' && c!='2' && c!='3' && c!='4' && c!='5')
+       if(c!='1' && c!='2' && c!='3' && c!='4' && c!='5' && c!='6')
        {
                 printf("Invalid choice(choose only 1 to 5)\n");
                 continue;
@@ -37,7 +39,7 @@ int main()
             {
       //add data-------------------------------------------------------------------
                       case'1':
-                               (ptr+n)->id=A_id;
+                               (ptr+n)->id=A_id;        //Automation=A_id.........
                                A_id++;
                                
                                printf("Enter a name: ");
@@ -48,6 +50,7 @@ int main()
                                
                                printf("Enter a salary: ");
                                scanf("%f",&(ptr+n)->salary);
+                               
                             n++;
                               printf("-----Done------");
                           break;
@@ -85,10 +88,7 @@ int main()
                             { 
                               if((ptr+i)->id==id)
                               {
-                                     printf("Enter a id: ");
-                                     scanf("%d",&(ptr+i)->id);
-                                 
-                                     printf("Enter a name: ");
+                                      printf("Enter a name: ");
                                      scanf("%s",(ptr+i)->name);
                                     
                                      printf("Enter a surname: ");
@@ -122,6 +122,11 @@ int main()
                            {
                               if((ptr+i)->id==id)
                               {
+                                 del_emp=*(ptr+i);     
+                                 del_index=i;         //stored position
+                                 deleted=1;
+                                 
+                              {
                                  while(i<n-1)
                                  {
                                      ptr[i]=ptr[i+1];     //shifting.........
@@ -133,11 +138,35 @@ int main()
                                  printf("\n-----sucessfully deleted---------\n");
                                break;
                               }
-                           }
+                            }
+                          }
                                if(!found)
                                         printf("\n-------------not found--------------\n");                                                                                                break;
-             //exit----------------------------------------------------------------------------------------------------
-                    case'5': printf("exit");
+         //Recover id----------------------------------------------------------------------------------------
+                    case '5':  if(deleted)
+                              {
+                                 for(i=n;i>del_index;i--)
+                                 {
+                                      ptr[i]=ptr[i-1];
+                                 }
+                                 *(ptr+del_index)=del_emp;
+                                 n++;
+                                 deleted=0;
+                                 printf("\n--------sucessfully recover the record--------\n");
+                                
+                             }
+                           
+                             else
+                             {
+                                 printf("no record");
+                             }
+                            
+                             break;
+
+
+         //exit----------------------------------------------------------------------------------------------------
+
+                    case'6': printf("exit");
                              return 0;
             } 
                             
